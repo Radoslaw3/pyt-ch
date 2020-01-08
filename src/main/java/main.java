@@ -1,9 +1,6 @@
 public class main {
-    public static void main(String[] args) {
 
 
-
-    }
 }
 
 /*
@@ -65,10 +62,24 @@ boolean b2 = (str1.equals(str3));
 System.out.print(b1+", "+b2);
 }
 
-127.
-public class Test{
-
-}
-
-
+127.   (Wynik: ThirdException, Odp. E.)
+    static void dispResult(int[] num){
+        try{
+            System.out.println(num[1] / (num[1] - num[2]));
+        } catch(ArithmeticException e){
+            System.err.println("first exception");
+        }
+        System.out.println("Done");  //jesli "ArithmetiException" by zlapal, to najpierw sie wyswietla: "Done", a nastepnie: "first exception"
+    }
+    public static void main(String[] args){
+        try{
+            int[] arr = {100, 100};  //tu nawiasy byly okragle "blad"
+            dispResult(arr);
+        } catch(IllegalArgumentException e) {
+            System.err.println("second exception");
+        } catch(Exception e) {
+            System.err.println("third exception"); // Prawidlowy wynik to: "third exception" jedynie
+        }
+        //System.out.println("cztery"); //to sie pierwsze wyswietlilo...pod warunkiem ze exception zlapie
+    }
  */
