@@ -1,9 +1,22 @@
 public class main {
+    public static void main(String[] args) {
 
+    }
 }
 
 /*
 // passleader
+
+---
+81.
+        boolean log3 = (5.0 != 6.0) && (4 != 5);  //true //wniosek: jesli pierwszy true to drugi dopiero jest sprawdzany.
+        boolean log4 = (4 != 4) || (4 == 4);  //true //wniosek: wystarczy ze jeden jest true
+        System.out.println("log3:" + log3 + "\nlog4:" + log4);
+---
+82.
+
+
+---
 122.
 import java.unit.*;
 ????
@@ -287,7 +300,63 @@ public class ExceptionTest {
 //SpecialException: Thrown at end of doSomething() method   //tak wyglada prawidlowo zlapane exception
 --
 139.
+public interface Contract {
+}
+public class Super implements Contract {
+}
+public class Sub extends Super {
+}
+import java.util.ArrayList;
+import java.util.List;
 
+public class Ref {
+    public static void main(String[] args) {
+        List objs = new ArrayList();
+        Contract c1 = new Super();
+        Contract c2 = new Sub();   //line n1
+        Super s1 = new Sub();
+        objs.add(c1);
+        objs.add(c2);
+        objs.add(s1);   //line n2
+        for(Object itm:objs){
+            System.out.println(itm.getClass().getName()); //pieknie pokazuje nazwe klasy
+        }
+
+    }
+}
+---
+140.
+public class Test {
+    public static void main(String[] args) {
+        Test ts = new Test();
+        System.out.println(isAvailable + " ");
+        isAvailable = ts.doStuff();
+        System.out.println(isAvailable);
+    }
+    public static boolean doStuff(){
+        return !isAvailable;
+    }
+    static boolean isAvailable = false;
+}
+---
+141.
+public class Msg {
+    public static String doMsg(char x){
+        return "Good Day!";
+    }
+    public static String doMsg(int y){
+        return "Good Luck!";
+    }
+
+    public static void main(String[] args) {
+        char x = 8; //'8' to by dalo 8 jako char, a tak to jest pustka
+        int z = '8'; //tu nie moze byc np. A, ale 'A' juz tak.
+        System.out.println(doMsg(x));
+        System.out.print(doMsg(z));
+    }
+
+}
+---
 
 
  */
