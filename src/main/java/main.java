@@ -1,6 +1,7 @@
 public class main {
     public static void main(String[] args) {
 
+
     }
 }
 
@@ -14,6 +15,73 @@ public class main {
         System.out.println("log3:" + log3 + "\nlog4:" + log4);
 ---
 82.
+        StringBuilder strB = new StringBuilder("ala");
+        strB.insert(3,"_ma");
+        strB.delete(0,strB.length());  //poprawnie
+        System.out.println(strB);
+---
+83.
+        public class StaticField {
+    static int i = 7;
+
+    public static void main(String[] args) {
+        StaticField obj = new StaticField();
+        obj.i++;
+        StaticField.i++;
+        obj.i++;
+        System.out.println(StaticField.i + " "+ obj.i);
+    }
+}
+>out: 10 10
+---
+84.
+//        Object array[]; //ok
+        //Boolean array[3];  //blad przez 3
+//        boolean array[] = new boolean[6]; //to by bylo ok
+//        int[] array;  //ok
+        Float[2] array;  //blad przez 2
+---
+85.
+    public class Overloading {
+    int x (double d){
+        System.out.println("one");
+        return 0;
+    }
+    String x(double d){
+        System.out.println("two");
+        return null;
+    }
+    double x(double d){
+        System.out.println("three");
+        return 0.0;
+    }
+
+    public static void main(String[] args) {
+        new Overloading().x(4.0);
+    }
+}
+//Odp.: D, Compilation Fails.  Przy Overloading nie moze byc ten sam parametr wejsciowy w kilku metodach.
+---
+86.
+public class MainMethod {
+    void main(){
+        System.out.println("one");
+    }
+    static void main(String args){
+        System.out.println("two");
+    }
+
+    public static void main(String[] args) {
+        System.out.println("three");
+    }
+    void mina(Object[] args){
+        System.out.println("four");
+    }
+}
+---
+87.
+
+
 
 
 ---
