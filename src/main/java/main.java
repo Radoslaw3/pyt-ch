@@ -12,7 +12,6 @@ public class main {
 
 
 
-
     }
 }
 
@@ -50,6 +49,109 @@ public class USMarket {
     SalesMan sm;
     Product p;
 }
+---
+63.
+public class CheckingAccount {
+    public int amount;
+    public CheckingAccount(int amount){
+        this.amount = amount;
+    }
+    public int getAmount(){return amount;}
+    public void changeAmount(int x){
+        amount += x;
+    }
+}
+--main w 2giej klasie:
+        CheckingAccount acct = new CheckingAccount((int)(Math.random()*1000));
+        //line n1
+        //acct(0);  //blad, bo do konstruktora tylko przez "new" mozna sie dostac
+        //acct.amount = 0; //ok. poprawne da 0
+        //acct.getAmount() = 0; //blad
+        //acct.getAmount(0); //blad
+        //acct.changeAmount(0); //kompiluje ale += nie daje 0
+        //acct.changeAmount(-acct.amount); //ok. poprawne da 0
+        //acct.changeAmount(-acct.getAmount()); //ok. poprawne da 0
+
+        System.out.println(acct.getAmount());
+--
+64.
+        String shirts[][] = new String[2][2];
+        shirts[0][0] = "red";
+        shirts[0][1] = "blue";
+        //shirts[0][2] = "blue2";
+        shirts[1][0] = "small";
+        shirts[1][1] = "medium";
+        //shirts[1][2] = "medium2";
+
+        for(int index = 0; index < 2; ){  //poprawnie
+            for(int idx = 0; idx < 2; ){
+                System.out.print(shirts[index][idx] + ": ");
+                idx++;
+            }
+            index++;
+        }
+//        for (int i = 0; i <shirts.length ; i++) {  //dla sprawdzenia
+//            for (int j = 0; j < shirts.length ; j++) {
+//                System.out.print(shirts[i][j] + ": ");
+//            }
+//        }
+---
+65.
+import java.io.IOException;
+
+public class Test {
+    void readCard(int cardNo) throws Exception{
+        System.out.println("Reading Card");
+    }
+    void checkCard(int cardNo) throws RuntimeException{ //line n1  //to nie robi problemu
+        System.out.println("Checking Card");
+    }
+
+    public static void main(String[] args) {
+        Test ex = new Test();
+        int cardNo = 12344;
+        ex.checkCard(cardNo);   //line n2
+        ex.readCard(cardNo);    //line n3   //krzyczy problem. Bo checked Exception. Trzeba wsadzic w try/catch lub do metody throws Exception
+        //throw new IOException(); // musi byc zlapane
+        //throw new ClassCastException();  //nie musi byc zlapane
+    }
+}
+---
+66.
+        StringBuilder sb = new StringBuilder(5);
+        String s = "";
+        if (sb.equals(s)){
+            System.out.println("Match 1");
+        }else if(sb.toString().equals(s.toString())){  ///string nie potrzebuje toString(), ale nie jest problemem.
+            System.out.println("Match 2");  //True. Prawidlowo. StringBuilder.toString equals String
+        }else{
+            System.out.println("No Match");
+        }
+---
+67.
+
+package p1;
+
+public class Acc {
+    int p;
+    private int q;
+    protected int r;
+    public int s;
+}
+--
+package p2;
+
+import p1.Acc;
+
+public class Test extends Acc {
+    public static void main(String[] args) {
+        Acc obj = new Test();
+        obj.   //tylko r i s sa dostepne z obj
+    }
+}
+--
+68.
+
 
 
 
