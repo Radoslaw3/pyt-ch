@@ -1,7 +1,8 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class main {
     public static void main(String[] args) {
@@ -9,14 +10,794 @@ public class main {
         //LocalDateTime ldt = new LocalDateTime(20201010,121212);
         //LocalDateTime localDateTime;
         //System.out.println(LocalDateTime.now());
+//        String date = LocalDate
+//                .parse("2014-05-04")
+//                .format(DateTimeFormatter.ISO_DATE_TIME); //to nie dziala...exception
+//                //.format(DateTimeFormatter.ISO_LOCAL_DATE); //to dziala
+//        System.out.println(date);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+}}
+/*
+// passleader
+---
+1.
+interface Readable {
+    public  void readBook();
+    public void setBookMark();
+}
+
+--
+public abstract class Book implements Readable {        //line n1
+    public void readBook(){}
+    //line n2
+
+}
+--
+public class EBook extends Book {       //line n3
+    public void readBook(){}
+    //line n4
+    public void setBookMark(){    }   //ok
+}
+--
+        Book r1 = new EBook();
+---
+2.
+        List<String> names = new ArrayList<>();
+        names.add("Robb");
+        names.add("Bran");
+        names.add("Rick");
+        names.add("Bran");
+        names.add("John");
+
+        if (names.remove("Bran")){   //wynik: [Robb, Rick, Bran]
+            names.remove("John");
+        }
+        System.out.println(names);   //ladnie listuje cala liste [Robb, Bran, Rick, Bran]
+
+---
+3.
+public class A {
+    public A() {
+        System.out.println("A");
     }
 }
 
-/*
-// passleader
+--
+public class B extends A {
+    public B() {
+        System.out.println("B");
+    }
+}
+--
+public class C extends B {
+    public C() {
+        System.out.println("C");
+    }
+
+    public static void main(String[] args) {
+        C c = new C();  // A B C
+        A c = new C();  // A B C
+        A c = new B();  // A B
+    }
+}
+
+
+
+
+
+---
+21.
+        String[] strs = new String[2];
+        System.out.println(strs[0]);
+        System.out.println(strs[0].concat("a"));//Exception in thread "main" java.lang.NullPointerException
+        int idx = 0;
+//        for (String s : strs) {
+//            strs[idx].concat(" element " + idx);//Exception in thread "main" java.lang.NullPointerException
+//            idx++;
+//        }
+        for (idx = 0; idx < strs.length; idx++){
+            System.out.println(strs[idx]);
+        }
+---
+22.
+        String[] strs = new String[2];
+        System.out.println(strs[0]);
+        System.out.println(strs[0].concat("a"));//Exception in thread "main" java.lang.NullPointerException
+        int idx = 0;
+//        for (String s : strs) {
+//            strs[idx].concat(" element " + idx);//Exception in thread "main" java.lang.NullPointerException
+//            idx++;
+//        }
+        for (idx = 0; idx < strs.length; idx++){
+            System.out.println(strs[idx]);
+        }
+--
+public class Vehicle {
+    int x;
+    Vehicle(){
+        this(10);   //line n1
+    }
+    Vehicle(int x){
+        this.x = x;
+    }
+}
+--
+         Vehicle y = new Car();
+        System.out.println(y);
+---
+23.
+package p1;
+
+public class MyString {
+    String msg;
+    MyString(String msg){
+        this.msg = msg;
+    }
+}
+--
+package p1;
+
+public class Test {
+    public static void main(String[] args) {
+        System.out.println("Hello " + new StringBuilder("Java SE 8")); //Hello Java SE 8
+        System.out.println("Hello " + new String("Java SE 8")); //Hello Java SE 8
+        System.out.println("Hello " + new MyString("Java SE 8")); //Hello p1.MyString@75412c2f
+    }
+}
+---
+24.
+        int iVar = 100;
+        float fVar = 100.100f;
+        double dVar = 123;
+        iVar = fVar; //blad bo do mniejszego
+        fVar = iVar; //ok
+        dVar = fVar; //ok
+        fVar = dVar; //blad bo do wiekszego
+        dVar = iVar; //ok
+        iVar = dVar; //blad bo do mniejszego
+---
+25.
+public class MainTest {
+    public static void main(int[] args) {
+        System.out.println("int main" + args[0]);
+    }
+
+    public static void main(Object[] args) {
+        System.out.println("Object main " + args[0]);
+    }
+
+    public static void main(String[] args) {
+        System.out.println("String main " + args[0]);
+    }
+    // input java MainTest 1 2 3
+    // out: String main 1
+
+}
+---
+26.
+        int num[][] = new int[1][3];
+        for (int i = 0; i < num.length; i++) {
+            for (int j = 0; j < num[i].length; j++) {
+                num[i][j] = 10;
+                //System.out.println(num[i][j]); // 10 10 10
+            }
+        }
+        for (int i = 0; i < num.length; i++) {
+            for (int j = 0; j < num[i].length; j++){
+                System.out.print(num[i][j]);
+            }
+            System.out.println();
+        }
+---
+27.
+public class Person {
+    String name;
+    int age = 25;
+
+
+    public Person(String name){
+        this();                     //line n1, brak bez param
+        setName(name);
+    }
+
+    public Person(String name, int age){
+        Person(name);               //line n2, tak sie nie da odwolac do konstruktora
+        setAge(age);
+    }
+
+    //setter and getter methods go here
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String show(){
+        return name + " " + age; //+ number ;
+    }
+
+    public static void main(String[] args) {
+        Person p1 = new Person("Jesse");
+        Person p2 = new Person("Walter", 52);
+        System.out.println(p1.show());
+        System.out.println(p2.show());
+    }
+}
+---
+28.
+public class Planet {
+    public String name;
+    public int moons;
+
+    public Planet(String name, int moons) {
+        this.name = name;
+        this.moons = moons;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Planet{" +
+//                "name='" + name + '\'' +
+//                ", moons=" + moons +
+//                '}';
+//    }
+}
+--
+        Planet[] planets = {
+                new Planet("Mercury", 0),
+                new Planet("Venus", 0),
+                new Planet("Earth", 1),
+                new Planet("Mars",2)
+        };
+
+        System.out.println(planets);
+        System.out.println(planets[2]);
+        System.out.println(planets[2].moons);
+---
+29.
+You are asked to develop a program for a shopping application, and you are given the following informations:
+-the app must contain the classes Toy, EduToy, and consToy.
+-the Toy class is the superclass of the other two classes.
+-the int caicuiatePrice (Toy t) method calculates the price of a toy.
+-the void printToy (Toy t) method prints the details of a toy.
+---
+30.
+        int[] intArr = {15,30,45,60,75};
+        intArr[2] = intArr[4];
+        intArr[4] = 90;
+        for (int i = 0; i < intArr.length; i++) {
+            System.out.print(intArr[i] + ","); //da 15,30,75,60,90,
+        }
+---
+31.
+
+        int[] intArr = {8,16,32,64,128};
+//        for(int i : intArr){              //ok
+////            System.out.print(i + " ");
+////        }
+//        for(int i=0; i< intArr.length; i++){  //ok
+//            System.out.print(intArr[i] + " ");
+//        }
+        //        int i = 0;
+        //                for(; ; ){  //dodatkowy test i dziala
+        //                    if (i >= intArr.length)
+        //                        break;
+        //
+        //                        System.out.print(intArr[i] + " ");
+        //                        i++;
+        //        }
+---
+32.
+
+ import / package / class - order
+---
+33.
+Process all the elements of the array in the order of entry.
+2.reverse
+3.alter elements in order of entry
+
+Which two are correct:
+A.Requirements 1, 2 and 3 can be implemented by using the enhanced for loop.
+B ...1 2 and 3...using standard for loop    //ok
+c... 2 and 3 CANNOT be implemented by using the standard for loop.
+d... 1 can be ...by enhanced for loop      //ok
+e.... 3 CANNOT be implemented...by either the enhanced or the standard for loop.
+
+        int[] array = {1,2,3,4,5};
+        for (int i = array.length-1; i >= 0 ; i--) {
+            System.out.println(array[i]);
+
+        }
+        System.out.println();
+        for (int a :
+                array) {
+            System.out.println(a);
+        }
+---
+34.
+public class TestScope {
+    public static void main(String[] args) {
+        int var1 = 200;
+        System.out.print(doCalc(var1));
+        System.out.print(" " + var1);
+    }
+    static int doCalc(int var1){
+        var1 = var1 * 2;
+        return var1;
+    }
+}
+---
+35.
+abstract class + interface + clasa1 + classa2
+odp.: gora - dol
+ArrayList<poziom wyzszy> aaa
+aaa.add(Object z poziom nizszy) <- tak jedynie moze byc
+---
+36.
+Which statement is true about Java byte code?
+a.it can run on any platform
+b.it can run on any platform only if it was compiled for this platform
+c.it can run on any platform that has the Java Runtime Environment  //ok
+d.it can run on any platform that has a Java compiler
+e.it can run on any platform only if that platform has both the Java Runtime Environment and a Java compiler.
+---
+37.
+
+public class MarkList {
+    static int iloscObjektowMarkList = 0;
+    int num;
+
+    public MarkList() {
+        this.iloscObjektowMarkList += 1;
+
+    }
+
+    public MarkList(int num) {
+        this();
+        this.num = num;
+    }
+
+    public static void graceMarkus(MarkList obj4){
+        obj4.num += 10;
+    }
+
+    public static void main(String[] args) {
+        MarkList obj1  = new MarkList(5);
+        MarkList obj2 = obj1;
+        MarkList obj3 = null;
+        obj2.num = 60;
+        graceMarkus(obj2);
+        System.out.println(obj1.num);
+        System.out.println("MarkList obj x: " + iloscObjektowMarkList + ", " + obj1.getClass()); //dopisalem
+    }
+}
+---
+38.
+public class Triangle {
+    static double area;
+    static int b = 2, h = 3;
+
+    public static void main(String[] args) {
+        double p,b,h;       //line n1
+        //b=1;
+        if (area == 0.0){
+            b = 3;
+            h = 4;
+            p = 0.5;
+        }
+        area = p * b * h;       //line n2   //issue
+        System.out.println("Area is " + area);
+        Triangle t1 = new Triangle();
+        System.out.println(t1.b + " " + " " + b);
+    }
+}
+---
+39.
+public class Test {
+    public static void main(String[] args) {
+        //line n1
+//        int x = 1;  //ok
+        //short x = 1;  //ok, Byte - tez ok.
+        Integer x = new Integer(1);
+
+        switch(x){
+            case 1:
+                System.out.println("one");
+                break;
+            case 2:
+                System.out.println("two");
+                break;
+        }
+    }
+}
+---
+40.
+public class App {
+    public static void main(String[] args) {
+        Boolean[] bool = new Boolean[2];
+        bool[0] = new Boolean(Boolean.parseBoolean("true"));  //da: true
+//        bool[1] = new Boolean("true");  //da: true
+        bool[1] = new Boolean(null);    //null czy "cokolwiek" da:  false
+
+        System.out.println(bool[0] + " " + bool[1]);
+    }
+}
+
+
+---
+41.
+public class MyException extends RuntimeException {
+}
+--
+public class Test {
+    public static void main(String[] args) {
+        System.out.println(Math.random());
+        try{
+            method1();
+        }
+        catch(MyException ne){
+            System.out.print("A");
+        }
+    }
+    public static void method1() {  //line n1
+        try{
+            throw Math.random() > 0.5 ? new MyException() : new RuntimeException();
+        }
+        catch (RuntimeException re){
+            System.out.println("B");  //MyException extends RuntimeException...dlatego zawsze RuntimeException wypadnie.
+        }
+    }
+}
+
+---
+42.
+
+public class App {
+    String myStr = "7007";
+
+    public void doStuff(String str){
+        int myNum = 0;
+        try{
+            String myStr = str;
+            myNum = Integer.parseInt(myStr);
+        }catch (NumberFormatException ne){
+            System.err.println("Error");
+        }
+        System.out.println("myStr: " + myStr + ", myNum: " + myNum);
+    }
+
+    public static void main(String[] args){
+        App obj = new App();
+        obj.doStuff("9009");
+    }
+}
+---
+43.
+Which two are benefits of polymorphism?
+a.Faster code at runtime
+b.more efficient code at runtime //ok
+c.more dynamic code at runtime
+d.more flexible and reusable code //ok
+e.code that is protected from extension by other classes
+odp.: D i C
+---
+44.
+        int nums1[] = new int[3];
+        int nums2[] = {1,2,3,4,5};
+        nums1 = nums2;
+        for (int x :
+                nums1) {
+            System.out.print(x + ":");
+        }
+---
+45.
+public class Product {
+    int id;
+    String name;
+    public Product(int id, String name){
+        this.id = id;
+        this.name = name;
+    }
+}
+--
+        Product p1 = new Product(101, "Pen");
+        Product p2 = new Product(101, "Pen");
+        Product p3 = p1;
+        boolean ans1 = p1 == p2;  //nie
+        boolean ans2 = p1.name.equals(p2.name); //tak
+        System.out.print(ans1 + ":" + ans2);
+//odp. false: true
+---
+46.
+public class Employee {
+    public int salary;
+}
+--
+public class Manager extends Employee {
+    public  int budget;
+}
+--
+public class Director extends Manager {
+    public int stockOptions;
+}
+--
+        Employee employee = new Employee();
+        Manager manager = new Manager();
+        Director director = new Director();
+        //line n1
+---
+47.
+public class Product {
+    double price;
+}
+--
+public class Test {
+    public void updatePrice(Product product, double price){
+        price = price *2;
+        product.price = product.price + price;
+    }
+
+    public static void main(String[] args) {
+        Product prt = new Product();
+        prt.price = 200;
+        double newPrice = 100;
+
+        Test t = new Test();
+        t.updatePrice(prt, newPrice);
+        System.out.println(prt.price + " : " + newPrice);
+    } //400.0 : 100.0
+}
+---
+48.
+        int aVar = 9;
+        if (aVar++ < 10){  //10 Hello World!
+        //if (++aVar < 10){  //10 Hello Universe!
+            System.out.println(aVar + " Hello World!");
+        }else{
+            System.out.println(aVar + " Hello Universe!");
+        }
+---
+49.
+        String date = LocalDate
+                .parse("2014-05-04")
+                .format(DateTimeFormatter.ISO_DATE_TIME); //to nie dziala...exception
+                //.format(DateTimeFormatter.ISO_LOCAL_DATE); //to dziala
+        System.out.println(date);
+---
+50.
+        Short s1 = 200;
+        Integer s2 = 400;
+        Long s3 = (long) s1 + s2;       //line n1
+        String s4 = (String) (s3 * s2);  //line n2
+        System.out.println("Sum is " + s4);
+        //throw new ClassCastException();
+---
+51.
+What is the name of the Java concept that uses access modifiers to protect variables and hide them within a class?
+a.encapsulation //ok
+b.inheritance
+c.abstraction
+d.instantiation
+e.polymorphism
+---
+52.
+abstract class Planet {
+    protected void revolve(){       //line n1
+
+    }
+    abstract void rotate();         //line n2
+}
+--
+public class Earth extends Planet {
+    void revolve(){         //linia n3
+
+    }
+    protected void rotate(){        //linia n4
+
+    }
+}
+---
+53.
+class Vehicle {
+    String type = "4W";
+    int maxSpeed = 100;
+
+    Vehicle(String type, int maxSpeed) {
+        this.type = type;
+        this.maxSpeed = maxSpeed;
+    }
+}
+--
+class Car extends Vehicle {
+    String trans;
+
+    Car(String trans) {      //blad       //line n1
+        this.trans = trans;
+    }
+
+    Car(String type, int maxSpeed, String trans) {
+        super(type, maxSpeed);
+        this(trans); //blad         //line n2
+    }
+
+//    Car(String type, int maxSpeed) {
+//        super(type, maxSpeed);
+//        this.trans = trans;
+//    }
+}
+---
+54.
+import java.io.IOException;
+
+class X {
+    public void printFileContent() throws IOException{   //Add IOException
+        //code goes here:
+
+        throw new IOException();
+    }
+}
+--
+public class Test {
+    public static void main (String[] args) throws Exception{ //add Exception
+        X xobj = new X();
+        xobj.printFileContent();
+    }
+}
+---
+55.
+public class Customer {
+    ElectricAccount acct = new ElectricAccount();
+
+    public void useElectricity(double kWh){
+        acct.addkWh(kWh);
+        //acct.setBill(2);  //tu bysmy namieszali w rachunku
+        System.out.println(acct);
+    }
+}
+--
+public class ElectricAccount {
+    private double kWh;  //laczna ilosc zuzycia od poczatku
+    private double rate = 0.07;
+    private double bill; //aktualny rachunek
+
+    //line n1
+    //bill is equal = kwh * member variable rate
+    public void addkWh(double kWh){
+        if (kWh > 0){
+            this.kWh = this.kWh + kWh;
+            this.bill = this.kWh * rate;
+            //setBill(this.kWh);
+        }
+    }
+//    public void setBill(double kWh){  //z instancji Customer class jestesmy w stanie zmienic rachunek = blad.
+//        bill = kWh * rate;
+//    }
+
+    @Override
+    public String toString() {
+        return "ElectricAccount{" +
+                "kWh=" + kWh +
+                ", rate=" + rate +
+                ", bill=" + bill +
+                '}';
+    }
+}
+--
+        Customer c1 = new Customer();
+        c1.useElectricity( 10);
+        c1.useElectricity( 10);
+---
+56.  Lambda - super fajny przyklad
+public class Person {
+    String name;
+    int age;
+    public Person(String n, int a){
+        name = n;
+        age = a;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+--
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+public class Test {     //lambda example
+    public static void  checkAge(List<Person> list, Predicate<Person> predicate){
+        for (Person p : list) {
+            if (predicate.test(p)) {
+                System.out.println(p.name + " ");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        List<Person> iList = Arrays.asList(new Person("Hank", 45),
+                                            new Person("Charlie",40),
+                                            new Person("Smith",38));
+        //line n1
+        //checkAge(iList,a->a.age > 40);  //to dziala, ale nie ma takiej odpowiedzi
+        //checkAge(iList,p -> p.getAge()>40);  //to dziala
+        checkAge(iList,(Person p) -> p.getAge()>40);  //to nie dziala przez: pusty: (), natomiast (p) juz dziala.
+        //checkAge(iList,(Person p)->{return p.getAge()>40;}); //to dziala po korekcie: + return
+    }
+}
+---
+57.
+        String[][] arr = {{"A","B","C"},{"D", "E"}};
+        for(int i = 0;i < arr.length;i++){
+            for(int j = 0;j < arr[i].length; j++){  //ta czesc jest super. Okreslenie dlugosci kazdej linii
+                System.out.print(arr[i][j]);
+                if (arr[i][j].equals("B")){
+                    break;
+                }
+            }
+            continue;
+        }  //ABDE
+
+---
+58.
+        String str = " ";
+        str.trim();
+        System.out.println(str.equals("") + " " + str.isEmpty());
+---
+59.
+public class CD {
+    int r;
+    CD(int r){
+        this.r=r;
+    }
+}
+--
+public class DVD extends CD {
+    int c;
+    DVD(int r, int c){
+        //line n1
+        super(r);
+        this.c = c;
+    }
+}
+--
+        DVD dvd = new DVD(10,20);
+---
+60.
+        int a[] = {1,2,3,4,5};
+        for(int e=0;e < 5; e += 2){  //to print 135 ?
+            System.out.print(a[e]);
+        }
+
 ---
 61.
 Which statement best describes encapsulation?
@@ -128,7 +909,7 @@ public class Test {
             System.out.println("No Match");
         }
 ---
-67.
+67. //fajny opis na kartkach + grafika dodana
 
 package p1;
 
@@ -150,11 +931,225 @@ public class Test extends Acc {
     }
 }
 --
-68.
+68.  POLYMORPHISM - super przyklad
+public class Base {
+    protected int a1;
 
+    public void test(){
+        System.out.println("Base ");
+    }
+}
+--
+public class DerivedA extends Base {
+    protected int a2;
+    public void test(){
+        System.out.println("DerivedA ");
+    }
+}
+--
+public class DerivedB extends DerivedA {
+    protected int a3;
+    public void test(){
+        System.out.println("DerivedB ");
+    }
 
+    public static void main(String[] args) {
+        Base b1 = new DerivedB();
+        Base b2 = new DerivedA();
+        Base b3 = new DerivedB();
+        b1.test();      //DerivedB
+        b1 = (Base)b3;
+        b1.test();      //DerivedB
+        Base b4 = (DerivedA)b3;
+        b4.test();      //DerivedB
+        b2.test();      //DerivedA
+        Base be1 = new Base();
+        be1.test();     //Base
+        b1.
+                //Zmienne: Parent = mniej zmiennych widzi, Child = wiecej zmiennych, nastepny glebszy child = jeszcze wiecej zm widzi.
+    }
+} //super opis:
+//  Dynamic Method Dispatch or Runtime Polymorphism in Java
+//  https://www.geeksforgeeks.org/dynamic-method-dispatch-runtime-polymorphism-java/
+// Static Polymorphism  VS Dynamic Polymorphism
+// https://beginnersbook.com/2013/04/runtime-compile-time-polymorphism/
+---
+69.
+        ArrayList myList = new ArrayList();
+        String[] myArray;
+        int a = 0;
+        try{
+            while(true){
+                myList.add("My String");
+            }
+        }
+        catch (RuntimeException re){
+            System.out.println("Caught a RuntimeException");
+        }
+        catch (Exception e){
+            System.out.println("Caught an Exception");
+        }
+        System.out.println("Ready to use");
+    }
+} //odp.: Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+---
+70.
+        System.out.println("5+2=" + 3 + 4);
+        System.out.println("5+2=" + (3 + 4));
+        String a = "ala";
+        System.out.println(a + 3 + 4);
+---
+71.
+        String ta = "A ";
+        ta = ta.concat("B ");
+        String tb = "C ";
+        ta = ta.concat(tb);
+        ta.replace('C', 'D'); //brak przypisania. btw.: replace zastepuje wszystkie wystapienia
+        ta = ta.concat(tb);
+        System.out.println(ta);
+---
+72.
+        int x = 5;
+        while (isAvailable(x)){
+            System.out.print(--x); //tu powinno byc x--
+        }
+    }
 
+    public static boolean isAvailable(int x){
+        return x-- > 0 ? true : false;
+---
+73.
+        //boolean opt = true; //boolean nie jest dozwolony w switch.
+        String opt = "true";
+        switch (opt){
+            case "true":
+                System.out.print("True");
+                break;
+            default :
+                System.out.print("***");
+        }
+        System.out.println("Done");
+---
+74.
+        int num = 5;
+        do {
+            System.out.print(--num + " "); //num-- da 5 // --num da 4
+        }while(num == 0);
+---
+75.
+        int x = 100;
+        System.out.println("x=" + x); //x=100
+        int a = x++;
+        System.out.println("a=" + a); //a=100
+        int b = ++x;
+        System.out.println("b=" + b); //b=102
+        int c = x++;
+        System.out.println("c=" + c); //c=102
+        int d = (a<b) ? (a<c) ? a:b : c;
+//        int d = (a<b) ? (a<c) : ? a:(b<c) ? b: c;
+        System.out.println(d);
+---
+76.
+        String[][] chs = new String[2][];
+        chs[0] = new String[2];
+        chs[1] = new String[5];
+        int i = 97;
 
+        for (int a = 0; a < chs.length; a++) {
+            for (int b = 0; b < chs.length; b++) {
+                chs[a][b] = "" + i; //Stringa tworzy z int-a
+                i++;
+            }
+        }
+        for (String[] ca : chs) {
+            for (String c : ca) {
+                System.out.print(c + " ");
+            }
+            System.out.println();
+        }
+////wynik:
+//        97 98
+//        99 100 null null null
+---
+77.
+
+public class Employee {
+    String name;
+    boolean contract;
+    static double salary;
+
+    Employee(){
+        //line n1
+//        this("Joe", true, 100); //nie ok
+
+//        name = "Joe";   //OK niby tez. TRUE z duzej wymagalo importu klasy, ale dziala ok.
+//        contract = TRUE;
+//        salary = 100.0f;
+
+//        this.name = new String ("Joe");  //ok
+//        this.contract = new Boolean(true);
+//        this.salary = new Double(100);
+    }
+
+    public String toString(){
+        return name + ":" + contract + ":" + salary;
+    }
+
+    public static void main(String[] args) {
+        Employee e = new Employee();
+        // line n2
+
+//        this.name = "Joe";   //"this" nie mozna uzyc wewnatrz static method
+//        this.contract = true;
+//        this.salary = 100;
+
+//        e.name = "Joe";  //1 opcja OK.
+//        e.contract = true;
+//        e.salary = 100;
+
+        System.out.print(e);
+    }
+}
+---
+78.
+public class Student {
+    public String name = "";
+    public int age = 0;
+    public String major = "Undeclared";
+    public boolean fulltime = true;
+
+    public void display(){
+        System.out.println("Name: " + name + " Major: " + major);
+    }
+
+    public boolean isFullTime(){
+        return fulltime;
+    }
+}
+--
+        //main method:
+        Student student = new Student();
+---
+79.
+        int[] array = {1,2,3,4,5};
+        for (int i : array) {
+            if (i < 2){
+                //keyword1
+                continue;
+
+            }
+            System.out.println(i);
+            if (i == 3){
+                //keyword2
+                continue;
+            }
+        }
+---
+80.
+        int i, j = 0;
+        i = (3*2 +4 +5); //15
+        j = (3* ((2+4) +5)); //33
+        System.out.println(i + " " + j);
 
 ---
 81.
