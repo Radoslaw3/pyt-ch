@@ -1,8 +1,4 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class main {
     public static void main(String[] args) {
@@ -16,10 +12,15 @@ public class main {
 //                //.format(DateTimeFormatter.ISO_LOCAL_DATE); //to dziala
 //        System.out.println(date);
 
-
-
-
-
+//        LocalDate date1 = LocalDate.now();
+//        LocalDate date2 = LocalDate.of(2014,6,20);
+//        LocalDate date3 = LocalDate.parse("2014-06-20", DateTimeFormatter.ISO_DATE);
+//        System.out.println("date1 = " + date1);
+//        System.out.println("date2 = " + date2);
+//        System.out.println("date3 = " + date3);
+////wynik:  date1 = 2020-02-15
+////        date2 = 2014-06-20
+////        date3 = 2014-06-20
 
 
 
@@ -93,10 +94,276 @@ public class C extends B {
         A c = new B();  // A B
     }
 }
+---
+4.
+public class X {
+    static int i;
+    int j;
+
+    public static void main(String[] args) {
+        X x1 = new X();
+        X x2 = new X();
+        x1.i = 3;
+        x1.j = 4;
+        x2.i = 5;
+        x2.j = 6;
+        System.out.println(
+                x1.i + " " +
+                        x1.j + "" +
+                        x2.i + "" +
+                        x2.j
+        );
 
 
+    }
+}
+---
+5.
+public class Test {
+    public static void main(String[] args) {
+        //insert code
+        int[]array = new int[2];
+        array[0]=10;
+        array[1]=20;
+        System.out.println(array[0]+ ":" + array[1]);
+    }
+}
+---
+6.
+ String[] arr = {"A","B","C","D"};
+        for (int i = 0; i < arr.length ; i++) {
+            System.out.print(arr[i] + " ");
+            if(arr[i].equals("C")){
+                continue;
+            }
+            System.out.println("Work done");
+            break;
+        }
+---
+7.
+Which three are advantages of the JAVA Exceptions mechanism?
+a.improves the program structure because the error handling is separated from the normal program function
+b.provide a set of standard exceptions that covers all the possible errors
+c.improves the program structure because the programmer can chose where to handle the exceptions
+d.improves the program structure because exceptions must be handled in the method in which they occurred
+e.allows the creation of new exceptions that are tailored"dostosowane" to the particular program being created
+odp.: a c e
+
+---
+8.
+public class Greeting {
+    public static void main(String[] args) {
+        System.out.println("Hello " + args[0]);
+    } //javac Greeting.java
+        //java Greeting Duke
+}
+
+---
+9.
+public class Alpha {
+    int ns;         //50  //125     //0
+    static int s;  //50     //125   //125
+
+    public Alpha(int ns) {
+        if (s < ns){
+            s = ns;
+            this.ns = ns;
+        }
+    }
+    void doPrint(){
+        System.out.println("ns = " + ns + " s = " + s);
+    }
+}
+--
+        Alpha ref1 = new Alpha(50);
+        Alpha ref2 = new Alpha(125);
+        Alpha ref3 = new Alpha(100);
+        ref1.doPrint();
+        ref2.doPrint();
+        ref3.doPrint();
+//        ns = 50 s = 125
+//        ns = 125 s = 125
+//        ns = 0 s = 125
+---
+10.
+        int ii = 0;
+        int jj = 7;
+        for (ii = 0; ii < jj; ii = ii + 2) {
+            System.out.print(ii + " ");
+            }
+        // 0 2 4 6
+---
+11.
+        LocalDate date1 = LocalDate.now();
+        LocalDate date2 = LocalDate.of(2014,6,20);
+        LocalDate date3 = LocalDate.parse("2014-06-20", DateTimeFormatter.ISO_DATE);
+        System.out.println("date1 = " + date1);
+        System.out.println("date2 = " + date2);
+        System.out.println("date3 = " + date3);
+//        date1 = 2020-02-15
+//        date2 = 2014-06-20
+//        date3 = 2014-06-20
+---
+12.
+        StringBuilder sb1 = new StringBuilder("Duke");
+        String str1 = sb1.toString();
+        //insert code here
+        String str2 = str1;     //true
+        System.out.print(str1 == str2);  //bada tylko referencje do obiektu
+---
+13.
+public class Test {
+    static int count = 0;
+    int i = 0;
+    public void changeCount(){
+        while(i < 5){
+            i++;
+            count++;
+        }
+    }
+
+    public static void main(String[] args) {
+        Test check1 = new Test();
+        Test check2 = new Test();
+        check1.changeCount();
+        check2.changeCount();
+        System.out.print(check1.count + " : " + check2.count);
+    }
+}
+---
+14.
+        double discount = 0;
+        int qty = Integer.parseInt(args[0]);
+        //line n1
 
 
+        //2. ok
+//        discount = (qty >= 90) ? 0.5 : (qty > 80) ? 0.2 : 0;
+
+        //1. ok
+//        if(qty >= 90){        //ok
+//            discount = 0.5;
+//        }
+//        if (qty > 80 && qty < 90) {
+//            discount = 0.2;
+//        }
+        //4. nie ok
+//
+//        if (qty > 80 && qty < 90) {
+//            discount = 0.2;
+//        }else{
+//            discount = 0;
+//        }
+//        if(qty >= 90){        //ok
+//            discount = 0.5;
+//        }else{
+//            discount = 0;
+//        }
+
+       System.out.println(discount);
+---
+15.
+public class Test {
+    public static void main(String[] args) {
+        if(args[0].equals("Hello") ? false : true){  //odwrocone!!!
+            System.out.println("Success");
+        }else{
+            System.out.println("Failure");
+        }
+    }
+}
+---
+16.
+Which three statements describe the object-oriented features of the Java language?
+a.Object cannot be reused
+b.A subclass can inherit from superclass.
+c.Objects can share behaviors with other objects
+d.A package must contain more than one class.
+e.Object is the root class of all other objects.
+f.A main method must be declared in every class.
+
+odp.BCE
+---
+17.
+        String[] planets = {"Mercury","Venus", "Earth", "Mars"};
+
+        System.out.println(planets.length);     //ilosc elementow tablicy
+        System.out.println(planets[1].length()); //dlugosc Stringa
+---
+18.
+public class CCMask {
+    public static String maskCC(String creditCard){
+        String x = "XXXX-XXXX-XXXX-";
+        //line n1;
+//        return x + creditCard.substring(15,19);  //ok 1
+       //ok 2
+//        StringBuilder sb = new StringBuilder(x);
+//        sb.append(creditCard, 15, 19);
+//        return sb.toString();
+
+        //nie ok
+//        StringBuilder sb = new StringBuilder(creditCard);
+//        //StringBuilder s =
+//                sb.insert(0,x);  //w zerowym miejscu doda String x //nie trzeba przypisawac do zmiennej
+//        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(maskCC("1234-5678-9101-1121"));
+    }
+}
+
+---
+19.
+public class App {
+    public static void main(String[] args) {
+        String str1 = "Java";
+        String str2 = new String("java");
+        //line n1
+        System.out.println(str1.toLowerCase()); //da "java"
+        System.out.println(str2.toLowerCase()); //da "java
+        if(str1.toLowerCase() == str2.toLowerCase()) //Not equal
+            if(str1.toLowerCase().equals(str2.toLowerCase())) //Equal
+
+        //not:
+//        String str3 = str2;
+//        if (str1.equals(str3))
+        //ok:
+        //if (str1.equalsIgnoreCase(str2)) //ok, Equals
+        //nie:
+//        String str3 = str2;
+//        if(str1 == str3)
+        {
+            System.out.println("Equal");
+        }else{
+            System.out.println("Not Equal");
+        }
+    }
+}
+---
+20.
+public class SumTest {
+    public static void doSum(Integer x, Integer y){
+        System.out.println("Integer " + (x + y));
+    }
+    public static void doSum(double x, double y){
+        System.out.println("double " + (x + y));
+    }
+    public static void doSum(float x, float y){
+        System.out.println("float " + (x + y));
+    }
+    public static void doSum(int x, int y){
+        System.out.println("int " + (x + y));
+    }
+        public static void doSum(Double x, Double y){
+        System.out.println("Double " + (x + y));
+    }
+
+    public static void main(String[] args) {
+        doSum(10, 20);
+        doSum(10.0, 20.0);
+    }
+}
 
 ---
 21.
