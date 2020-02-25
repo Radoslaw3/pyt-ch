@@ -1,11 +1,55 @@
 
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
 
 public class main {
-    public static void main(String[] args) {
-        //throw new NegativeArraySizeException()
-        //LocalDateTime ldt = new LocalDateTime(20201010,121212);
-        //LocalDateTime localDateTime;
-        //System.out.println(LocalDateTime.now());
+
+    private int cos = 5;
+    private void prvClass(){
+        System.out.println("pokaz");
+    }
+    public void dwa(){
+        main m1 = new main();
+        this.cos = 4;
+    }
+
+    private main() {
+        System.out.println("none");
+    }
+
+    private main(int cos) {
+        this();
+        this.cos = cos;
+    }
+
+        public static void main(String[] args) {
+            main m2 = new main();
+
+            System.out.println();
+            //Wniosek:
+            //this()     //jednie z konstruktora
+            //  .this    //jedynie z instancji obiektu
+
+
+
+
+
+////////////////////// Daty:
+            //throw new NegativeArraySizeException()
+            //LocalDateTime ldt = new LocalDateTime(20201010,121212);
+            //LocalDateTime localDateTime;
+            //System.out.println(LocalDateTime.now());
 //        String date = LocalDate
 //                .parse("2014-05-04")
 //                .format(DateTimeFormatter.ISO_DATE_TIME); //to nie dziala...exception
@@ -21,18 +65,132 @@ public class main {
 ////wynik:  date1 = 2020-02-15
 ////        date2 = 2014-06-20
 ////        date3 = 2014-06-20
+//        LocalDateTime dt = LocalDateTime.of(2014,05,04,1,1,1);
+////        dt.plusDays (30); //nie zmienilo daty
+////        dt.plusMonths(1); //nie zmienilo daty
+//        dt = dt.plusDays (30); //zmienilo daty
+//        dt = dt.plusMonths(1); //zmienilo daty //Wniosek: musi byc przypisane spowrotem
+//        System.out.println(dt.format(DateTimeFormatter.ISO_DATE));
+
+
+//        //Q 28.
+//        //Which of the following can be inserted into the blank to create a date of June 21, 2014? (Choose all that apply)
+//        import java.time.*;
+//
+//        public class StartOfSummer {
+//
+//            public static void main(String[] args) {
+//                LocalDate date = ____________________________  //nie moze byc: new LocalDate()
+//                                            //jedynie: LocalDate.of(2014,6,21)
+//            }
+//
+//        }
+//            //Q 29.
+//        //What is the output of the following code?
+//        LocalDate date = LocalDate.parse("2018-04-30", DateTimeFormatter.ISO_LOCAL_DATE);
+//        date.plusDays(2);
+//        date.plusHours(3);          //LocalDate...nie ma Hours !!!
+//        System.out.println(date.getYear() + " " + date.getMonth() + " "
+//                + date.getDayOfMonth());
+//                //Q 30.
+//        //What is the output of the following code?
+//        LocalDate date = LocalDate.of(2018, Month.APRIL, 40);  //Exception gdy invalid date...40 dzien miesiaca.
+//        System.out.println(date.getYear() + " " + date.getMonth() + " "
+//                + date.getDayOfMonth());
+//        //Q 31.)
+//        //What is the output of the following code?
+//        LocalDate date = LocalDate.of(2018, Month.APRIL, 30);
+//        date.plusDays(2);       //brak przypisania do "date", wiec brak jakiejkolwiek zmiany
+//        date.plusYears(3);      //brak jakiejkolwiek zmiany
+//        System.out.println(date.getYear() + " " + date.getMonth() + " "
+//                + date.getDayOfMonth());
+//        //Q 32.)
+//        //What is the output of the following code?
+//        LocalDateTime d = LocalDateTime.of(2015, 5, 10, 11, 22, 33);
+//        Period p = Period.of(1, 2, 3);
+//        d = d.minus(p);
+//        DateTimeFormatter f = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT);
+//        System.out.println(d.format(f)); // ofLocalizedTime, wiec jedynie time: 11:22 AM
+            //Q. 33.)
+//        //What is the output of the following code?
+//        LocalDateTime d = LocalDateTime.of(2015, 5, 10, 11, 22, 33);
+//        Period p = Period.ofDays(1).ofYears(2);   // Podchwytliwe !!! jedynie ofYears(2) jest brane pod uwage. Brak Method chaining.
+//        d = d.minus(p);
+//        DateTimeFormatter f = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT);
+//        System.out.println(f.format(d));
 
 
 
+////////////////////Lambdas:
+//        List<PersonLambda> iList = Arrays.asList(new ArrayList<PersonLambda>((new PersonLambda("Hank", 45),
+//                new PersonLambda("Charlie",40),
+//                new PersonLambda("Smith",38));
+//
+//        doStanie(iList,a->a.name == "Charlie");
+//
+//}
+//
+//        static void doStanie(List<PersonLambda> person, Predicate<PersonLambda> predicate){
+//            for (PersonLambda p1: person) {
+//                if (predicate.test(p1)){
+//                    System.out.println(p1.name + " " + p1.age);
+//                }
+//            }
+//Q. 26  	What is the result of the following class?
+//1: import java.util.function.*;
+//2:
+//3: public class Panda {
+//4: int age;
+//5: public static void main(String[] args) {
+//6: Panda p1 = new Panda();
+//7: p1.age = 1;
+//8: check(p1, p -> p.age < 5);
+//9: }
+//10: private static void check(Panda panda, Predicate<Panda> pred) {
+//11: String result = pred.test(panda) ? "match" : "not match";
+//12: System.out.print(result);
+//13: } } output: match
 
+            //Q. 27  	What is the result of the following code?
+            //1: interface Climb {
+            //2: boolean isTooHigh(int height, int limit);
+            //3: }
+            //4:
+            //5: public class Climber {
+            //6: public static void main(String[] args) {
+            //7: check((h, l) -> h.append(l).isEmpty(), 5);    // Compile error on line 7
+            //8: }
+            //9: private static void check(Climb climb, int height) {
+            //10: if (climb.isTooHigh(height, 10))
+            //11: System.out.println("too high");
+            //12: else
+            //13: System.out.println("ok");
+            //14: }
+            //15: }
 
+//Q. 28  	Which of the following lambda expressions can fill in the blank? (Choose all that apply)
+//List<String> list = new ArrayList<>();
+//list.removeIf(___________________);
+////Odp.: A.	s -> s.isEmpty() //ok
+            //D.	s -> {return s.isEmpty();} //ok.
+            //F. (String s) -> s.isEmpty()    //ok.
 
+//Q. 29  	Which lambda can replace the MySecret class to return the same value? (Choose all that apply)
+//interface Secret {
+//String magic(double d);
+//}
+//
+//class MySecret implements Secret {
+//public String magic(double d) {
+//return "Poof";
+//} //ODp.: A.	caller((e) -> "Poof");  //ok
+//} //      F.	caller((e) -> { String f = ""; return "Poof"; });   //ok
 
+        }
 
-
-}}
+    }
 /*
-// passleader
+// passleader;
 ---
 1.
 interface Readable {
@@ -545,6 +703,11 @@ public class Planet {
         System.out.println(planets);
         System.out.println(planets[2]);
         System.out.println(planets[2].moons);
+//odp.
+[LPlanet;@75412c2f
+Planet@282ba1e
+1
+
 ---
 29.
 You are asked to develop a program for a shopping application, and you are given the following informations:
@@ -763,12 +926,13 @@ public class App {
         obj.doStuff("9009");
     }
 }
+///odp.: myStr: 7007, myNum: 9009
 ---
 43.
 Which two are benefits of polymorphism?
 a.Faster code at runtime
-b.more efficient code at runtime //ok
-c.more dynamic code at runtime
+b.more efficient code at runtime
+c.more dynamic code at runtime  //ok
 d.more flexible and reusable code //ok
 e.code that is protected from extension by other classes
 odp.: D i C
@@ -1193,8 +1357,11 @@ import p1.Acc;
 
 public class Test extends Acc {
     public static void main(String[] args) {
-        Acc obj = new Test();
-        obj.   //tylko r i s sa dostepne z obj
+        Acc obj = new Test(); //to Acc, jest problemem
+        //obj.;   //r i s sa widoczne ale r nie wyswietlimy poniewaz
+                    // zmiana na: Test obj = new Test(); //juz pozwala uzyc zmiennej protected odziedziczonej z parenta
+        System.out.println(obj.r); //nie wyswietli "r", krzyczy ze protected
+             System.out.println("s = "+obj.s +" r = "+ obj.r);//nie wyswietli "r", krzyczy ze protected
     }
 }
 --
@@ -1248,17 +1415,27 @@ public class DerivedB extends DerivedA {
         try{
             while(true){
                 myList.add("My String");
+                //throw new RuntimeException();
             }
+            //System.out.println("czy dokonczy try"); //unreachable statement gdy: while ma (true)
         }
         catch (RuntimeException re){
             System.out.println("Caught a RuntimeException");
         }
         catch (Exception e){
             System.out.println("Caught an Exception");
+        }catch(Error re){           //dodaje...i...: "Caught an Error", then "Ready to use"
+            System.out.println("Caught an Error");
+        }finally {
+            System.out.println("finally catch");
         }
         System.out.println("Ready to use");
-    }
-} //odp.: Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+
+ //odp.: Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+ //po dodaniu finally: zawsze finally jest wyswietlone
+        //zawsze "Ready to use" jest wyswietlone ostatnie gdy zlapie jakikolwiek catch
+//nigdy nie dokonczy try{} i nie wyswietli: "czy dokonczy try"
+
 ---
 70.
         System.out.println("5+2=" + 3 + 4);
@@ -1725,15 +1902,15 @@ System.out.println((28+5) <= (4+29));
 126.
 public class Equal{
 psvm
-String str1 = "Java";
-String[] str2 = {"J","a","v","a"};
-String str3 = "";
-for(String str : str2){
-str3 = str3+str;
-}
-boolean b1 = (str1 == str3);
-boolean b2 = (str1.equals(str3));
-System.out.print(b1+", "+b2);
+        String str1 = "Java";
+        String[] str2 = {"J","a","v","a"};
+        String str3 = "";
+        for(String str : str2){
+            str3 = str3+str;    //poniewaz cocncat uzywasz to JAVA tworzy StringBuilder a nie String...dlatego nie jest to samo co w String Pool.
+        }
+        boolean b1 = (str1 == str3);
+        boolean b2 = (str1.equals(str3));
+        System.out.print(b1+", "+b2);  //false, true
 }
 
 127.   (Wynik: ThirdException, Odp. E.)
@@ -2019,6 +2196,437 @@ public class Msg {
 
 }
 ---
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>inne:
+public class Test {
+    public static final int MIN = 1;
+
+    public static void main(String[] args) {
+        int x = args.length;
+        if(checkLimit(x)){//line n1
+            System.out.println("Java SE");
+        }else{
+            System.out.println("Java EE");  //ok
+        }
+    }
+    public static boolean checkLimit(int x){
+        return (x >= MIN)? true : false;
+    }
+}
+---
+            int data [] = {2010,2013,2014,2015,2014};
+            int key = 2014;
+            int count = 0;
+            for(int e : data)
+            {
+                System.out.println(e);
+                if (e!=key)
+                {
+                    //continue; // if continue is commented 3 is answer
+                    count++; //unreachable statment
+                }
+            }
+
+            System.out.println(count + "Found");
+---
+        int [] stack = {10,20,30};
+        int size = 3;
+        int idx = 0;
+        System.out.println("The top Element 1:" +stack[idx]);
+        do
+        {
+            idx++;
+        }
+        while (idx < size-1); //ok
+        System.out.println("The top Element :" +stack[idx]);
+---
+Which three statements are true about exception handling?
+a.only unchecked exceptions can be rethrown.                //false
+b.All subclasses of the RuntimeException class are recoverable. //true
+c.The parameter in a catch black is of Throwable type.      //true
+d.All subclasses of the RuntimeException class must be caught or declared to be thrown. //false
+e.All subclasses of the Exception class except the RuntimeException class are checked exceptions. //true
+f.All subclasses of the Error class are checked exceptions and are recoverable. //false
+
+---
+        ArrayList<Integer> points = new ArrayList<>();
+        points.add(1);
+        points.add(2);
+        points.add(3);  //to usunie
+        points.add(4);
+        points.add(null);  //to usunie
+        points.remove(2);   //podchwytliwe !!!
+        points.remove(null);
+        System.out.println(points);
+
+
+------------------
+package p1;
+
+public class A {
+}
+--
+package p1.p2;
+
+import p1.A;
+
+public class B {   //gdy jest extends A...to tez wymaga to import-u
+    public void doStuff(){
+        A b = new A();      //to wymaga: import p1.A;
+    }
+}
+--
+package p3;
+
+import p1.A;
+import p1.p2.B;
+
+public class C {
+    public static void main(String[] args) {
+        A 01 = new A();     //to wymaga import: import p1.A;
+        B 02 = new B();   //to wymaga import: import p1.p2.B;
+    }
+}
+------------------
+public class Employee {
+    private String name;
+    private int age;
+    private int salary;
+
+    public Employee(String name, int age){   //brakuje bezparametrycznego = blad
+        setName(name);
+        setAge(age);
+        setSalary(2000);
+    }
+
+    public Employee(String name, int age, int salary) {
+        setSalary(salary);
+        this(name, age);    //tu juz widze blad
+    }
+    //getters and setters methods for attributes go here
+    public void printDetails(){
+        System.out.println(name + " : " + age + " : " + salary);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+}
+--
+public class Test {
+    public static void main(String[] args) {
+        Employee e1 = new Employee();  //brakuje bezparametrycznego blad
+        Employee e2 = new Employee("Jack", 50) ; //tu bylo ("Jack, 50);
+        Employee e3 = new Employee("Chloe", 40, 5000);
+        e1.printDetails();
+        e2.printDetails();
+        e3.printDetails();
+    }
+}
+----------
+        String names[] = {"Thomas", "Peter", "Joseph"};
+        String pwd[] = new String[3];
+        int idx = 0;
+        try{
+            for(String n: names){
+                pwd[idx] = n.substring(2,6);
+                idx++;
+            }
+        }
+        catch(Exception e){
+            System.out.println("Invalid Name");
+        }
+
+        for(String p: pwd){
+            System.out.println(p);
+        }
+//output: Invalid Name
+//        omas
+//        null
+//        null
+
+        System.out.println("idziemy dalej");
+-----------
+public class Animal {
+    String type = "Canine";
+    int maxSpeed = 60;
+
+    Animal(){}
+
+    Animal(String type, int maxSpeed){
+        this.type = type;
+        this.maxSpeed = maxSpeed;
+    }
+}
+--
+public class WildAnimal extends Animal {
+    String bounds;
+
+    WildAnimal(String bounds){
+        //line n1
+        super();
+        this.bounds = bounds;
+    }
+    WildAnimal(String type, int maxSpeed, String bounds){
+        //line n2
+        super(type,maxSpeed);
+        this.bounds = bounds;
+
+    }
+}
+--
+
+        WildAnimal wolf = new WildAnimal("Long");
+        WildAnimal tiger = new WildAnimal("Feline", 80, "Short");
+        System.out.println(wolf.type + " " + wolf.maxSpeed + " " + wolf.bounds);
+        System.out.println(tiger.type + " " + tiger.maxSpeed + " " + tiger.bounds);
+
+//        A.
+//                Replace line n1 with:
+//        super ();
+//        this.bounds = bounds;
+//        E.
+//                Replace line n2 with:
+//        super (type, maxSpeed);
+//        this.bounds = bounds;
+//Canine 60 Long
+//Feline 80 Short
+--------------------
+Which statement is true about the switch statement?
+d.its expression must evaluate to a single value  //ok
+
+--------------------
+//terrary
+        String stuff = "TV";
+        String res = null;
+        if (stuff.equals("TV")){
+            res = "Walter";
+        }else if(stuff.equals("Movie")) {
+            res = "White";
+        }else{
+            res = "No Result";
+        }
+        System.out.println(res);
+
+        //stuff.equals("TV")? res="Walter" : res="No Result";    //blad
+        //stuff.equals("TV")? res="Walter" : stuff.equals("Movie")? res="White" : res="No Result";  ///blad bo zmienna res powinna byc na poczatku
+        res = stuff.equals("TV")? "Walter" : stuff.equals("Movie")? "White" : "No Result";  //ok, POPRAWNIE
+        int ala;
+        ala = 5 > 3 ? 4 : 1; //ok, POPRAWNIE dla int
+        System.out.println(stuff.equals("TV")? "Walter" : "No Result"); //ok: bo daje Stringa a w sout wchodzi String.
+        res = stuff.equals("TV")? stuff.equals("Movie")?"Walter":"White":"No Result"; //No error. Ale logika nie poprawna.
+---------------
+        String str1 = "test";
+        StringBuilder sb = new StringBuilder("test");
+        StringBuilder sb1 = new StringBuilder(str1);
+        //sb.deleteAll(); //blad
+        //sb.delete(0,sb.size()); //blad
+        sb.delete(0,sb.length()); //ok
+        //sb.removeAll(); //blad
+---------------
+        boolean a = new Boolean("TRUE"); //da true
+        System.out.println(a);
+---------------
+        String s = "Java Duke";
+        int len = s.trim().length(); //String nie ma metod z method chaining!
+        System.out.println(len);   //da 9
+---------------
+        int a = 9;
+        if(a++ < 10){ //tu a=9
+            System.out.println(a + " a < 10"); //tu a=10 UWAGA!!!
+        }else{
+            System.out.println(a + " a > 10");
+        }
+---------------
+public class Vowel {
+    private char var;
+
+    public static void main(String[] args) {
+        char var1 = 'a';
+        char var2 = var1;
+        var2 = 'e';
+
+        Vowel obj1 = new Vowel();
+        Vowel obj2 = obj1;
+        obj1.var = 'i';
+        obj2.var = 'o';
+
+        System.out.println(var1 + ", " + var2);
+        System.out.println(obj1.var + ", " + obj2.var);
+    }
+}
+//da:
+a, e
+o, o
+--------------
+public class MyField {
+    int x;
+    int y;
+    public void doStuff(int x, int y){
+        this.x = x;
+        y = this.y;
+    }
+    public void display(){
+        System.out.print(x + " " + y + " : ");
+    }
+
+    public static void main(String[] args) {
+        MyField m1 = new MyField();
+        m1.x = 100;
+        m1.y = 200;
+        MyField m2 = new MyField();
+        m2.doStuff(m1.x,m1.y);
+        m1.display();
+        m2.display();
+    }
+    //odp.: 100 200 : 100 0 :
+}
+--------------------
+        try{
+            int nim = 10;
+            int div = 0;
+            int ans = nim / div;
+        }catch(ArithmeticException se){
+            ans = 0;                //line n1
+        }catch (Exception e) {
+            System.out.println("Invalid calculation");
+        }
+        System.out.println("Answer = " + ans);  //line n2
+
+        ///Compilation fails only at line n1 and line2.
+        //ans - nie istnieje w tych catch oraz ponizej
+-------------------
+        public static void main(String... $n)
+        System.out.println($n[0] + " " + $n[1]);  //ok
+-------------------
+        int s = 0;
+        int s1 = 0;
+        for (int i = 0; i < 10; i++) { //brak i++...infinitive loop
+            i = i++;  //to nic nie zmienia. Dziwne! i = i + i, lub i = i + 1, lub i++... zmienia.
+            //jesli brak i++ w for (; ; i++), to infinite loop. i = i++; nic nie zmienia(jakby i = i).
+//            System.out.println(i);
+//            s = s++;   //to jest zawsze 0
+//            s += s;   //to jest zawsze 0
+            s1 = s++; //to juz da 0-9
+            System.out.println(s1);
+        }
+------------------
+        int x = 5;
+        while(x < 10){
+            //x = x++; //niekonczaca petla...55555...
+            x++; //ok. 6-10
+            System.out.println(x);
+        }
+------------------
+//skaplikowany temat ++ wewnatrz loop
+        int x = 0 ;
+        int y = 0 ;
+        int z = 0 ;
+        int end = 0;
+
+        //do {
+        for (int i = 0; i < 5; i++) {
+            //end++;// = x + 1;
+            //end = y++; //to jest bez znaczenia
+            end = z++; //to jedynie jest brabe pod uwage: 0-4
+            end = z++; //to da: 1 3 5 7 9
+            end = z++; //to da: 2 5 8 11 14
+            end = z++; //to da: 3 7 11 15 19 //czyli 1-loop: pierwszy ++ jest pomijany, a kazdy nastepny ++ sie liczy
+                                            //2-loop: dodaje 4, poniewaz ++ x4 wystapily
+
+            System.out.println(end);
+        }
+        //}while( x < 5);
+------------------
+String[] ala = new String[2];
+        System.out.println(ala[0]); //ok. da: null
+        //System.out.println(ala[0].concat(" element" + 0));//da NullPointerException
+//        int idx = 0;
+//        for (String s1 :
+//                ala) {
+//            ala[idx].concat(" element" + idx);  //da NullPointerException
+//            idx++;
+//        }
+------------------
+        //What is the output of the following code snippet?
+                 int count = 0;
+         ROW_LOOP: for(int row = 1; row <=3; row++)
+             for(int col = 1; col <=2 ; col++) {
+             if(row * col % 2 == 0) continue ROW_LOOP;
+             count++;
+             }
+         System.out.println(count); //da 2
+-----------------
+
+        ///////////// switch - zasady:
+        char grade = 'e';
+        final char litera = 'c';  //final
+        switch(grade){
+            case 'a':
+            case 'b':
+            case litera:    //musi byc zmienna: final
+
+        }
+        /////////
+        final String str = "ala";
+        final String a1 = "a1";
+        String start = "a1";
+        switch(start){ //czyli.: tu nie musi byc zmienna typu: final
+            case "a2":
+            case a1:
+            case str: //natomiast w "case": juz musi byc typu: final
+
+        }
+------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
 >>>>>>>>>>>>>>>Rozne inne, ciekawe testy:
 ---
 1.) Exception, oraz Varaiable ... jak to sie ma?
@@ -2066,8 +2674,79 @@ public class JakasTest {
 }
 b.)
 ---
-3.) inne
+3.) ArrayList + wrzucanie roznych zmiennych
+//////////////// ArrayList - investigation
+        ArrayList myList = new ArrayList();
+        String[] myArray;
+        String str = "jakas tam zawartosc";
+        //int innn = 56;
+        char innn = 56;
+        myList.add(innn);
+        System.out.println(myList);
+---
+4.)     String = int + "";
+        /////////////////
+        int numFish = 4;
+        String fishType = "tuna";
+        String anotherFish = "" + numFish + 1; //da 41tuna, Natomiast: numFish + 1 + ""; //dalo by 5tuna
+        System.out.println(anotherFish + fishType);
 
+5.)     equals on (Array vs ArrayList)
+        ///////////////////////////////
+        int[] array1 = new int[2];
+        int[] array2 = new int[2];
+        System.out.println(array1.equals(array2)); //false, two Arrays are not equal
+        ArrayList arrayList1 = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        System.out.println(arrayList1.equals(arrayList2));//true, two ArrayList-s are equal, czyli the same element in the same order.
+        arrayList1.remove(0); //Compiler ominie, Runtime - zlapie Exception: IndexOutOfBoundsException
+        //The compiler does not know when an index is out of bounds and thus can’t give you a compiler error. The code will throw an exception at runtime, though.
+---
+6.)     Sortowanie Arrays - przy uzyciu Collections.sort
+        //////////////////////////
+                List<Integer> list = Arrays.asList(10, 4, -1, 5); //Array do List-y
+        Collections.sort(list);
+        Integer array[] = list.toArray(new Integer[4]); //spowrotem do Array
+        System.out.println(array[0]);
+---
+7.)     Sort + Array
+        /////////////////////////
+        int[] random = { 6, -4, 12, 0, -10 };
+        int x = 12;
+        Arrays.sort(random); //sortuje
+        int y = Arrays.binarySearch(random, x);
+        System.out.println(y);
+---
+8.)     Sort + Array + kolejnosc hex
+        ///////////////////////////
+        List<String> hex = Arrays.asList("30", "8", "3A", "FF"); //kolejnosc: 0 2 1 3
+        Collections.sort(hex);
+        int x = Collections.binarySearch(hex, "8");
+        int y = Collections.binarySearch(hex, "3A");
+        int z = Collections.binarySearch(hex, "4F");
+        System.out.println(x + " " + y + " " + z);  //2 1 -3
+---
+9.) /////////////// Vararg  vs tablica []   - analiza
+
+    //public static String howMany(boolean[] b, boolean... b2){
+    public static String howMany(boolean[] b, boolean[] b2){
+
+        return b.length + " " + b2.length;
+    }
+
+
+//public static void main(String[] args, int... cosVarrag) { //blad, Error: Main method not found in class main, please define the main method as:
+        public static void main(String[] args) {
+
+            boolean[] aba = new boolean[5];
+            int a[] = new int[5];
+            a = new int[]{1,2,3,4,5};
+            aba = new boolean[]{true,false}; //sposob wypelniania
+            System.out.println(howMany(aba,new boolean[]{false,true}));
+            System.out.println(howMany(aba,new boolean[2])); //przekazanie parametrow do Vararg
+
+---
+10.)
 
 
 
